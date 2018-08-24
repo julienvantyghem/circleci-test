@@ -4,11 +4,9 @@ jobs:
     docker:
       - image: debian:stretch
     steps:
-      - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: install git and ssh
+          command: apt-get update && apt-get install -y git ssh
       - run:
-          name: Print the Current Time
-          command: date
-      - add_ssh_keys
+          name: Connect to remote VPS
+          command: ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@34.241.9.84 'echo $HOSTNAME'
