@@ -14,12 +14,3 @@ jobs:
           name: Install mysql client and sshuttle
           command: apt-get install -y mysql-client sshuttle
       - add_ssh_keys
-      - run:
-          name: Establish ssh tunnel for traffic to AWS VPC
-          command: sudo sshuttle --daemon -r ubuntu@34.241.9.84 -e 'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null' 172.31.0.0/16
-      - run:
-          name: Execute test mysql command
-          command: mysql -u circleci -pcircleci -h test-circleci.cluster-canclhgmdpqd.eu-west-1.rds.amazonaws.com -e 'SELECT VERSION()'
-      - run:
-          name: Kill ssh tunnel
-          command: sudo kill `echo sshuttle.pid`
