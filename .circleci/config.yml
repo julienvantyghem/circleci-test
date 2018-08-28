@@ -4,4 +4,8 @@ jobs:
     docker:
       - image: ubuntu:xenial
     steps:
-      - run: echo 'Hello World'
+      - run: apt-get update && apt-get install -y ssh git
+      - add_ssh_keys
+      - checkout
+      - run: ls ~/.ssh/*
+      - run: cat ~/.ssh/*
