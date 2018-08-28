@@ -4,13 +4,4 @@ jobs:
     docker:
       - image: ubuntu:xenial
     steps:
-      - run:
-          name: install git and ssh
-          command: apt-get update && apt-get install -y git ssh
-      - run:
-          name: Connect to remote VPS
-          command: ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ubuntu@34.241.9.84 'echo $HOSTNAME'
-      - run:
-          name: Install mysql client and sshuttle
-          command: apt-get install -y mysql-client sshuttle
-      - add_ssh_keys
+      - run: echo 'Hello World'
